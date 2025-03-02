@@ -7,3 +7,6 @@ The sequences given to BERT as input can be a single sentence or a pair of sente
 ### What is the relationship between Protein-LLMs and Protein Families ?
 
 Each protein family contains many different proteins, that share sequence similarity. They generally contain some conserved domains and motifs. These domains and motifs might provide similar functionalities for those proteins. In that case, they can be involved in related biochemical tasks. This suggests that the proteins in the same family might possibly have common evolutionary origin. To detect this, sequence alignment methods and hidden Markov models are used. Protein language models started to be used to detect these motifs and domains for family classification tasks. 
+
+- [Pfam Database](http://pfam.xfam.org)
+- [EMBL-Protein Classification](https://www.ebi.ac.uk/training/online/courses/protein-classification-intro-ebi-resources/protein-classification/what-are-protein-families/#:~:text=A%20protein%20family%20is%20a,smaller%2C%20more%20closely%20related%20groups.)
