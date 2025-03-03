@@ -10,7 +10,14 @@ In BERT, WordPiece style tokenizer is used, and it has 30k token vocabulary. The
 
 ### What is the relationship between Protein-LLMs and Protein Families ?
 
-Each protein family contains many different proteins, that share sequence similarity. They generally contain some conserved domains and motifs. These domains and motifs might provide similar functionalities for those proteins. In that case, they can be involved in related biochemical tasks. This suggests that the proteins in the same family might possibly have common evolutionary origin. To detect this, sequence alignment methods and hidden Markov models are used. Protein language models started to be used to detect these motifs and domains for family classification tasks. 
+Each protein family contains many different proteins, that share come conserved domains. For example, CDK1 and PLK2 comprise ***kinase domain***, located in 4-287 and 82-334 nucleotide ranges. This domain for its carrier proteins are not completely same, it actually differentiates. However, some common nucleotide motifs are located in that domain, which provides similar functionalities for those proteins. In that case, they can be involved in related biochemical tasks. This suggests that the proteins in the same family might possibly have common evolutionary origin. To detect this, sequence alignment methods and hidden Markov models are used. Protein language models started to be used to detect these motifs and domains for family classification tasks. 
 
 - [Pfam Database](http://pfam.xfam.org)
 - [EMBL-Protein Classification](https://www.ebi.ac.uk/training/online/courses/protein-classification-intro-ebi-resources/protein-classification/what-are-protein-families/#:~:text=A%20protein%20family%20is%20a,smaller%2C%20more%20closely%20related%20groups.)
+
+
+### What is a protein domain ?
+
+A protein can consists of single domain or multiple domains. Each domain is a distinct and independently folding unit. In other words, how a domain will be folded does not depend on other domains; that is why, the domains are generally called as a self-stabilizing unit. 
+
+Each domain can form a three-dimensional structure, and it is observable in many different proteins. Molecular evolution utilizes protein domains as building blocks, different domains are recombined with each other to create new proteins with different functionalities. At this point, each domain is associated with a specific functionality.
