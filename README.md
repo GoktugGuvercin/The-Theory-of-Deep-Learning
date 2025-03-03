@@ -1,7 +1,11 @@
 
 ### How are tokenization and input embeddings proceeded in BERT ?
 
-The sequences given to BERT as input can be a single sentence or a pair of sentences. This provides specific methodology to deal with question answering tasks, where SEP token is added between QA sentences in token space. Additionally, each token is diversified with respect to the sentence ownership. In other words, input embeddings are not only the summation of token embeddings and positional embeddings, but also include the addition of segment embeddings. At this point, just like the others, segmentation embeddings are learned representations, but to specify whether the token belongs to first sentence or second sentence.
+Input sequence given to the BERT can be single sentence or a pair of sentences. This provides a methodology to deal with question answering tasks, where SEP token is added between QA sentences. 
+
+Additionally, each token is diversified with respect to sentence ownership. It specifies that the token belongs to the first sentence (question) or the second sentence (answer). In other words, input embeddings are not only the summation of token embeddings and positional embeddings, but also includes the addition of segment embeddings. Three embedding layers are operated to learn from positional, token and segment indices separately. The output of these embedding layers are summed up to generate input embeddings for the model. 
+
+In BERT, WordPiece style tokenizer is used, and it has 30k token vocabulary. The first token of each input sequence is always classification token [CLS] to represent the entire sequence for classification tasks. 
 
 
 ### What is the relationship between Protein-LLMs and Protein Families ?
