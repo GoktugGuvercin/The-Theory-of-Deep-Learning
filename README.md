@@ -7,6 +7,27 @@ Additionally, each token is diversified with respect to sentence ownership. It s
 
 In BERT, WordPiece style tokenizer is used, and it has 30k token vocabulary. The first token of each input sequence is always classification token [CLS] to represent the entire sequence for classification tasks. 
 
+### What is SentencePair ?
+
+SentencePiece is a language-independent subword tokenizer. It treats the text given as input as a stream of characters; it does not rely on language-specific pre-tokenization tools, which are commonly used split the text into small entities like words by whitespaces and punctuation. SentencePiece processes raw text directly, treating spaces as regular characters, which makes it highly useful for the languages without clear word boundaries like Japanese and Chinese. 
+
+In genome sequences, there is no exact definition of word and sentence. Besides, genome sequences are typically represented as a continuous string of nucleotide characters (A, C, G, T), so they don't require any kind of language-specific pre-tokenization. This makes SentencePiece quite suitable for genome. DNABERT-2 is one of the foundation models which specifically opted for this tokenizer.
+
+SentencePiece features two subword segmentation algorithms, which are byte-pair encoding (BPE) and uni-gram language model. It partition the text into subword units, rather than focusing on whole words. This helps to balance vocabulary size and leverages token granularity. Rare or out-of-vocabulary (OOV) words would be handled; they are broken into more frequent subword components. 
+
+### What is Byte-Pair Encoding ?
+
+Byte-pair encoding (BPE) is a subword tokenization strategy used in pre-training GPT, GPT-2 and some BERT variations. It is also called as a compression algorithm used for word segmentation. It extracts unique set of words in the corpus and initialize the vocabulary by taking all unique symbols used to write those words. After getting base vocabulary, BPE started to search for the most frequent pair of existing tokens. Those two tokens are merged and added to vocabulary as a new token. This process is repeated until the desired vocabulary size is obtained by merges. 
+
+For example, in DNABERT-2, DNA sequences are not in the form of linguistic sentences, so there is no word extraction. In that case, the base vocabulary is directly set to four nucleotides {A, T, G, C}. Then, BPE scans through the corpus and picks two tokens that repeats most to merge, as follows:
+
+| Iteration  | Corpus | Operation | Vocabulary
+|:----------:|:------:|:---------:|:----------:
+| 0  | AACGCACTATATA  | Base Vocabulary | {A, T, C, G}
+| 1  | A A C G C A C T A T A T A  | Merged TA | {A, T, C, G, TA}
+| 2  | A A C G C A C TA TA TA  | Merged AC | {A, T, C, G, TA, AC}
+| 3  | A AC G C AC TA TA TA  | Merged TATA | {A, T, C, G, TA, AC, TATA}
+
 
 ### What is the relationship between Protein-LLMs and Protein Families ?
 
