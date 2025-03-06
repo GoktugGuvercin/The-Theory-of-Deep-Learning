@@ -7,7 +7,7 @@ Additionally, each token is diversified with respect to sentence ownership. It s
 
 In BERT, WordPiece style tokenizer is used, and it has 30k token vocabulary. The first token of each input sequence is always classification token [CLS] to represent the entire sequence for classification tasks. 
 
-### What is SentencePair ?
+### What is SentencePiece ?
 
 SentencePiece is a language-independent subword tokenizer. It treats the text given as input as a stream of characters; it does not rely on language-specific pre-tokenization tools, which are commonly used split the text into small entities like words by whitespaces and punctuation. SentencePiece processes raw text directly, treating spaces as regular characters, which makes it highly useful for the languages without clear word boundaries like Japanese and Chinese. 
 
