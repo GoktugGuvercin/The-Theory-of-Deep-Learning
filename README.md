@@ -15,6 +15,9 @@ In genome sequences, there is no exact definition of word and sentence. Besides,
 
 SentencePiece features two subword segmentation algorithms, which are byte-pair encoding (BPE) and uni-gram language model. It partition the text into subword units, rather than focusing on whole words. This helps to balance vocabulary size and leverages token granularity. Rare or out-of-vocabulary (OOV) words would be handled; they are broken into more frequent subword components. 
 
+- [SentencePiece Paper](https://arxiv.org/pdf/1808.06226)
+- [Hugging Face](https://huggingface.co/docs/transformers/en/tokenizer_summary#sentencepiece)
+
 ### What is Byte-Pair Encoding ?
 
 Byte-pair encoding (BPE) is a subword tokenization strategy used in pre-training GPT, GPT-2 and some BERT variations. It is also called as a compression algorithm used for word segmentation. It extracts unique set of words in the corpus and initialize the vocabulary by taking all unique symbols used to write those words. After getting base vocabulary, BPE started to search for the most frequent pair of existing tokens. Those two tokens are merged and added to vocabulary as a new token. This process is repeated until the desired vocabulary size is obtained by merges. 
@@ -27,6 +30,9 @@ For example, in DNABERT-2, DNA sequences are not in the form of linguistic sente
 | 1  | A A C G C A C T A T A T A  | Merged TA | {A, T, C, G, TA}
 | 2  | A A C G C A C TA TA TA  | Merged AC | {A, T, C, G, TA, AC}
 | 3  | A AC G C AC TA TA TA  | Merged TATA | {A, T, C, G, TA, AC, TATA}
+
+- [Hugging Face](https://huggingface.co/learn/nlp-course/en/chapter6/5)
+- [DNABERT-2](https://arxiv.org/pdf/2306.15006)
 
 
 ### What is the relationship between Protein-LLMs and Protein Families ?
