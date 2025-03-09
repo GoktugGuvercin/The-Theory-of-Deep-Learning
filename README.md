@@ -35,6 +35,21 @@ For example, in DNABERT-2, DNA sequences are not in the form of linguistic sente
 - [DNABERT-2](https://arxiv.org/pdf/2306.15006)
 
 
+### What are the three main limitations that impact mRNA analysis in deep learning ?
+
+- Many models utilize context windows that are too short to effectively process mRNA sequences. On the other hand, mRNAs are often extremely long. This makes it more difficult to model long-range dependencies.
+
+- Tokenization techniques are simplified and more general; they are not specifically exclusive for biological analysis. That is why, they restricts learning some biological structures from the sequences. 
+
+- Existing models designed for mRNA analysis do not account for all mRNA sequence, instead they focus on only specific mRNA regions. This decreases their generalizability and make them less flexible.
+
+
+### What is the main advantage of mamba over attention systems in transformer ?
+
+- Mamba is a state-space model. It maintains a hidden state, called as memory, and update this compressed state as processing the sequence given as input. It is specifically designed for processing long sequences because it has linear computational complexity.
+
+- On the other hand, attention systems compute the importance of each token relative to all other tokens, which causes approximately $O(n^2)$ computational complexity, where $n$ refers to the sequence length. This makes attention systems computationally expensive for long sequences. The investigation of mRNA molecules is one of the extreme cases where we observe this.
+
 ### What is the relationship between Protein-LLMs and Protein Families ?
 
 Each protein family contains many different proteins, that share some conserved domains. For example, CDK1 and PLK2 comprise ***kinase domain***, located in 4-287 and 82-334 nucleotide ranges. This domain for its carrier proteins are not completely same, it actually differentiates. However, some common nucleotide motifs are located in that domain, which provides similar functionalities for those proteins. In that case, they can be involved in related biochemical tasks. This suggests that the proteins in the same family might possibly have common evolutionary origin. To detect this, sequence alignment methods and hidden Markov models are used. Protein language models started to be used to detect these motifs and domains for family classification tasks. 
