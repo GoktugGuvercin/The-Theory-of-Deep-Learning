@@ -35,6 +35,19 @@ For example, in DNABERT-2, DNA sequences are not in the form of linguistic sente
 - [DNABERT-2](https://arxiv.org/pdf/2306.15006)
 
 
+### What are the main differences between RNNs and Transformers ?
+
+* In transformer, sentences are processed as a whole rather than word by word. On the other hand,  recurrent architectures process the inputs sequentially, one time step at a time.
+
+* RNNs process sequences sequentially. This is computationally expensive, and time-consuming. Due yo sequential nature of computation, training becomes quite slow. Additionally, this sequentially processing makes them difficult to be parallelized in training and inference stages. This is specified in “Attention is al you need” paper: “This inherently sequential nature precludes parallelization within training examples, which becomes critical at longer sequence lengths, as memory constraints limit batching across examples.” Transformers process the entire sequence at once. That is why they are so efficient, and can be parallelized on modern hardware. This leads to faster computation and better scalability. We can also observe this in “Attention is all you need” paper, where sequential operations and maximum path length complexities is O(1) in transformer, and O(n) in RNNs. 
+
+* In machine translation and text generation tasks, both architectures are used as autoregressive model, so generation of each output token becomes dependent on the previous ones. However, their inherent approaches are different.
+
+    * The design of RNN architectures is naturally sequential. It updates hidden state step by step. The tokens need to be processed in sequence. So, their recurrent nature makes them naturally suited for sequential prediction.
+
+    * Transformers do not have such a design issue; it is capable of parallel processing. In inference stage, masking future tokens in self-attention leads transformer decoders to generate tokens one at a time. Nevertheless, in training stage, it processes entire entire sequence in parallel by teacher forcing.  
+
+
 ### What are the three main limitations that impact mRNA analysis in deep learning ?
 
 - Many models utilize context windows that are too short to effectively process mRNA sequences. On the other hand, mRNAs are often extremely long. This makes it more difficult to model long-range dependencies.
