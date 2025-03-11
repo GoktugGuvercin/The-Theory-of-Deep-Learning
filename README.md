@@ -7,6 +7,41 @@ Additionally, each token is diversified with respect to sentence ownership. It s
 
 In BERT, WordPiece style tokenizer is used, and it has 30k token vocabulary. The first token of each input sequence is always classification token [CLS] to represent the entire sequence for classification tasks. 
 
+
+## Can you describe the concept of connectivity in convolutional and FC layers ?
+
+In fully-connected layers, every output unit interacts with every input unit. This is described by matrix multiplication between input and weight matrix. 
+
+On the other hand, convolution layers have sparse connectivity, which is also called sparse interaction. An output unit only interacts with small part of the input. To accomplish this, a smaller kernel than input is chosen and this kernel is convolved with the corresponding part inside the input by sliding-window. This provides the following advantages:
+
+    - Smaller kernels help to store fewer parameters. In that way, memory complexity of the model is reduced. (Smaller Model, Lower memory complexity)
+
+    - The generation of output units requires fewer number of calculations. (Lower Computational Complexity)
+
+## Do we have weight-sharing in FC and convolution layers ?
+
+In a fully-connected layer, each neuron has its own weights. In that case, a different set of weights is used to produce each output unit. On the other hand, a convolution layer convolves same kernel values with different parts of the input to generate multiple units in output feature map. So, more than one output unit relies on same kernel values. 
+
+    - Each output unit relies on different set of parameters (FC Layer - No Weight Sharing).
+    - Multiple output units relies on same set of parameters (Conv Layer - Weight Sharing).
+
+## Why is weight sharing so important ?
+
+Weight sharing enables us to reduce the number of trainable parameters in the neural architecture. This allows us to use more number of layers in order to learn more complicated relationships in the data, and the model even dont get larger enough.
+
+## Which factors decrease the number of parameters in CNNs ?
+
+- Using smaller kernels than input map. Even though input gets larger, kernel size can remain same (This is not the case for FC layers).
+
+- Weight sharing enables us to use same kernel values to generate multiple output units. So, each output unit does not rely on a new set of parameters.
+
+## What are the possible solutions for vanishing gradients ?
+
+- He/Glorot Initialization
+- ReLU activation
+- Residual Connections
+- Layer-wise Pretraining
+
 ## What is SentencePiece ?
 
 SentencePiece is a language-independent subword tokenizer. It treats the text given as input as a stream of characters; it does not rely on language-specific pre-tokenization tools, which are commonly used split the text into small entities like words by whitespaces and punctuation. SentencePiece processes raw text directly, treating spaces as regular characters, which makes it highly useful for the languages without clear word boundaries like Japanese and Chinese. 
