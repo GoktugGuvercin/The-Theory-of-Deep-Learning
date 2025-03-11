@@ -14,16 +14,16 @@ In fully-connected layers, every output unit interacts with every input unit. Th
 
 On the other hand, convolution layers have sparse connectivity, which is also called sparse interaction. An output unit only interacts with small part of the input. To accomplish this, a smaller kernel than input is chosen and this kernel is convolved with the corresponding part inside the input by sliding-window. This provides the following advantages:
 
-    - Smaller kernels help to store fewer parameters. In that way, memory complexity of the model is reduced. (Smaller Model, Lower memory complexity)
+- Smaller kernels help to store fewer parameters. In that way, memory complexity of the model is reduced. (Smaller Model, Lower memory complexity)
 
-    - The generation of output units requires fewer number of calculations. (Lower Computational Complexity)
+- The generation of output units requires fewer number of calculations. (Lower Computational Complexity)
 
 ## Do we have weight-sharing in FC and convolution layers ?
 
 In a fully-connected layer, each neuron has its own weights. In that case, a different set of weights is used to produce each output unit. On the other hand, a convolution layer convolves same kernel values with different parts of the input to generate multiple units in output feature map. So, more than one output unit relies on same kernel values. 
 
-    - Each output unit relies on different set of parameters (FC Layer - No Weight Sharing).
-    - Multiple output units relies on same set of parameters (Conv Layer - Weight Sharing).
+- Each output unit relies on different set of parameters (FC Layer - No Weight Sharing).
+- Multiple output units relies on same set of parameters (Conv Layer - Weight Sharing).
 
 ## Why is weight sharing so important ?
 
