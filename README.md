@@ -29,20 +29,20 @@ In a fully-connected layer, each neuron has its own weights. In that case, a dif
 
 Weight sharing enables us to reduce the number of trainable parameters in the neural architecture. This allows us to use more number of layers in order to learn more complicated relationships in the data, and the model even dont get larger enough.
 
-## Which factors decrease the number of parameters in CNNs ?
+### Which factors decrease the number of parameters in CNNs ?
 
 - Using smaller kernels than input map. Even though input gets larger, kernel size can remain same (This is not the case for FC layers).
 
 - Weight sharing enables us to use same kernel values to generate multiple output units. So, each output unit does not rely on a new set of parameters.
 
-## What are the possible solutions for vanishing gradients ?
+### What are the possible solutions for vanishing gradients ?
 
 - He/Glorot Initialization
 - ReLU activation
 - Residual Connections
 - Layer-wise Pretraining
 
-## What is SentencePiece ?
+### What is SentencePiece ?
 
 SentencePiece is a language-independent subword tokenizer. It treats the text given as input as a stream of characters; it does not rely on language-specific pre-tokenization tools, which are commonly used split the text into small entities like words by whitespaces and punctuation. SentencePiece processes raw text directly, treating spaces as regular characters, which makes it highly useful for the languages without clear word boundaries like Japanese and Chinese. 
 
@@ -53,7 +53,7 @@ SentencePiece features two subword segmentation algorithms, which are byte-pair 
 - [SentencePiece Paper](https://arxiv.org/pdf/1808.06226)
 - [Hugging Face](https://huggingface.co/docs/transformers/en/tokenizer_summary#sentencepiece)
 
-## What is Byte-Pair Encoding ?
+### What is Byte-Pair Encoding ?
 
 Byte-pair encoding (BPE) is a subword tokenization strategy used in pre-training GPT, GPT-2 and some BERT variations. It is also called as a compression algorithm used for word segmentation. It extracts unique set of words in the corpus and initialize the vocabulary by taking all unique symbols used to write those words. After getting base vocabulary, BPE started to search for the most frequent pair of existing tokens. Those two tokens are merged and added to vocabulary as a new token. This process is repeated until the desired vocabulary size is obtained by merges. 
 
@@ -70,7 +70,7 @@ For example, in DNABERT-2, DNA sequences are not in the form of linguistic sente
 - [DNABERT-2](https://arxiv.org/pdf/2306.15006)
 
 
-## What are the main differences between RNNs and Transformers ?
+### What are the main differences between RNNs and Transformers ?
 
 * In transformer, sentences are processed as a whole rather than word by word. On the other hand,  recurrent architectures process the inputs sequentially, one time step at a time.
 
@@ -83,7 +83,7 @@ For example, in DNABERT-2, DNA sequences are not in the form of linguistic sente
     * Transformers do not have such a design issue; it is capable of parallel processing. In inference stage, masking future tokens in self-attention leads transformer decoders to generate tokens one at a time. Nevertheless, in training stage, it processes entire entire sequence in parallel by teacher forcing.  
 
 
-## What are the three main limitations that impact mRNA analysis in deep learning ?
+### What are the three main limitations that impact mRNA analysis in deep learning ?
 
 - Many models utilize context windows that are too short to effectively process mRNA sequences. On the other hand, mRNAs are often extremely long. This makes it more difficult to model long-range dependencies.
 
@@ -91,14 +91,25 @@ For example, in DNABERT-2, DNA sequences are not in the form of linguistic sente
 
 - Existing models designed for mRNA analysis do not account for all mRNA sequence, instead they focus on only specific mRNA regions. This decreases their generalizability and make them less flexible.
 
+### Why is single nucleotide resolution used and entire mRNA sequence processed in Helix-mRNA model ?
 
-## What is the main advantage of mamba over attention systems in transformer ?
+Complete biological information tries to be preserved without any data loss. In addition to this, high granuality is leveraged in sequence modeling.
+
+
+### What are the roles of mamba and attention layers in Helix-mRNA model ?
+
+Mamba layers enable us to process long sequences in linear time complexity. At that point, they encode and summarize the context of the sequence. 
+
+Attention layers help to focus on sub regions of the sequence. They provide in-context retention property. In that way, codin region structure is preserved. To additionally support codon separation, a new token is introduced. 
+
+
+### What is the main advantage of mamba over attention systems in transformer ?
 
 - Mamba is a state-space model. It maintains a hidden state, called as memory, and update this compressed state as processing the sequence given as input. It is specifically designed for processing long sequences because it has linear computational complexity.
 
 - On the other hand, attention systems compute the importance of each token relative to all other tokens, which causes approximately $O(n^2)$ computational complexity, where $n$ refers to the sequence length. This makes attention systems computationally expensive for long sequences. The investigation of mRNA molecules is one of the extreme cases where we observe this.
 
-## What is the relationship between Protein-LLMs and Protein Families ?
+### What is the relationship between Protein-LLMs and Protein Families ?
 
 Each protein family contains many different proteins, that share some conserved domains. For example, CDK1 and PLK2 comprise ***kinase domain***, located in 4-287 and 82-334 nucleotide ranges. This domain for its carrier proteins are not completely same, it actually differentiates. However, some common nucleotide motifs are located in that domain, which provides similar functionalities for those proteins. In that case, they can be involved in related biochemical tasks. This suggests that the proteins in the same family might possibly have common evolutionary origin. To detect this, sequence alignment methods and hidden Markov models are used. Protein language models started to be used to detect these motifs and domains for family classification tasks. 
 
@@ -106,7 +117,7 @@ Each protein family contains many different proteins, that share some conserved 
 - [EMBL-Protein Classification](https://www.ebi.ac.uk/training/online/courses/protein-classification-intro-ebi-resources/protein-classification/what-are-protein-families/#:~:text=A%20protein%20family%20is%20a,smaller%2C%20more%20closely%20related%20groups.)
 
 
-## What is a protein domain ?
+### What is a protein domain ?
 
 A protein can consists of single domain or multiple domains. Each domain is a distinct and independently folding unit. In other words, how a domain will be folded does not depend on other domains; that is why, the domains are generally called as a self-stabilizing unit. 
 
