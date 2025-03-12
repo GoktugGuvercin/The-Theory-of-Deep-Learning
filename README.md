@@ -44,7 +44,9 @@ Weight sharing enables us to reduce the number of trainable parameters in the ne
 
 ### What is SentencePiece ?
 
-SentencePiece is a language-independent subword tokenizer. It treats the text given as input as a stream of characters; it does not rely on language-specific pre-tokenization tools, which are commonly used split the text into small entities like words by whitespaces and punctuation. SentencePiece processes raw text directly, treating spaces as regular characters, which makes it highly useful for the languages without clear word boundaries like Japanese and Chinese. 
+SentencePiece is a language-independent subword tokenizer. It preserves the most repetitive words, but it splits the rare ones into the spepcific sub-parts that would appear more frequently in text corpus.   
+
+Subword segmentation tools used in this kind of tokenizers generally assume that the input is pre-tokenized into the sequence of words. At this point, whitespaces and punctuations are taken into account. However, the main problem is the fact that this operation poses language-specific dependency. SentencePiece can extract the subwords from raw text, which it treats as a stream of characters. That is why it is called as language-independent tokenizer, which makes it useful for the languages without clear word boundaries like Japanese and Chinese. 
 
 In genome sequences, there is no exact definition of word and sentence. Besides, genome sequences are typically represented as a continuous string of nucleotide characters (A, C, G, T), so they don't require any kind of language-specific pre-tokenization. This makes SentencePiece quite suitable for genome. DNABERT-2 is one of the foundation models which specifically opted for this tokenizer.
 
