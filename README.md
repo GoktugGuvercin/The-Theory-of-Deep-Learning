@@ -10,20 +10,27 @@ In BERT, WordPiece style tokenizer is used, and it has 30k token vocabulary. The
 
 ## Can you describe the concept of connectivity in convolutional and FC layers ?
 
-In fully-connected layers, every output unit interacts with every input unit. This is described by matrix multiplication between input and weight matrix. 
+In fully-connected layers, every output unit interacts with every input unit. In other words, all input units are consumed and processed to generate each output unit. This is described by matrix multiplication between input and weight matrices. 
 
-On the other hand, convolution layers have sparse connectivity, which is also called sparse interaction. An output unit only interacts with small part of the input. To accomplish this, a smaller kernel than input is chosen and this kernel is convolved with the corresponding part inside the input by sliding-window. This provides the following advantages:
+On the other hand, convolution layers have sparse connectivity, which is also called sparse interaction. An output unit only interacts with small part of the input. A specific part of input map is used to generate an output score. To accomplish this, a smaller kernel than input is chosen and this kernel is convolved with the corresponding part inside the input by sliding-window. This provides the following advantages:
 
-- Smaller kernels help to store fewer parameters. In that way, memory complexity of the model is reduced. (Smaller Model, Lower memory complexity)
+- Smaller kernel means fewer parameters, and sparse connectivity allows us to maintain this. Even input gets larger, kernel size can remain same. This reduces the size of the model, and thereby decreasing the memory complexity. (Smaller Model, Lower memory complexity)
 
 - The generation of output units requires fewer number of calculations. (Lower Computational Complexity)
 
 ## Do we have weight-sharing in FC and convolution layers ?
 
+Weight sharing is a concept of using same parameters to generate more than one output unit. 
+
 In a fully-connected layer, each neuron has its own weights. In that case, a different set of weights is used to produce each output unit. On the other hand, a convolution layer convolves same kernel values with different parts of the input to generate multiple units in output feature map. So, more than one output unit relies on same kernel values. 
 
 - Each output unit relies on different set of parameters (FC Layer - No Weight Sharing).
 - Multiple output units relies on same set of parameters (Conv Layer - Weight Sharing).
+
+## What are conceptual idioms to describe there is no weight sharing in FC layers ?
+
+- Each neuron to generate an output unit has its own weight vectors.
+- Each element in weight matrix is used/visited only once to compute layer output. 
 
 ## Why is weight sharing so important ?
 
@@ -31,7 +38,7 @@ Weight sharing enables us to reduce the number of trainable parameters in the ne
 
 ### Which factors decrease the number of parameters in CNNs ?
 
-- Using smaller kernels than input map. Even though input gets larger, kernel size can remain same (This is not the case for FC layers).
+- Sparse connectivity, ssing smaller kernels than input map. Even though input gets larger, kernel size can remain same (This is not the case for FC layers).
 
 - Weight sharing enables us to use same kernel values to generate multiple output units. So, each output unit does not rely on a new set of parameters.
 
