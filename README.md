@@ -1,5 +1,5 @@
 
-## How are tokenization and input embeddings proceeded in BERT ?
+### How are tokenization and input embeddings proceeded in BERT ?
 
 Input sequence given to the BERT can be single sentence or a pair of sentences. This provides a methodology to deal with question answering tasks, where SEP token is added between QA sentences. 
 
@@ -8,7 +8,7 @@ Additionally, each token is diversified with respect to sentence ownership. It s
 In BERT, WordPiece style tokenizer is used, and it has 30k token vocabulary. The first token of each input sequence is always classification token [CLS] to represent the entire sequence for classification tasks. 
 
 
-## Can you describe the concept of connectivity in convolutional and FC layers ?
+### Can you describe the concept of connectivity in convolutional and FC layers ?
 
 In fully-connected layers, every output unit interacts with every input unit. In other words, all input units are consumed and processed to generate each output unit. This is described by matrix multiplication between input and weight matrices. 
 
@@ -18,7 +18,7 @@ On the other hand, convolution layers have sparse connectivity, which is also ca
 
 - The generation of output units requires fewer number of calculations. (Lower Computational Complexity)
 
-## Do we have weight-sharing in FC and convolution layers ?
+### Do we have weight-sharing in FC and convolution layers ?
 
 Weight sharing is a concept of using same parameters to generate more than one output unit. 
 
@@ -27,12 +27,12 @@ In a fully-connected layer, each neuron has its own weights. In that case, a dif
 - Each output unit relies on different set of parameters (FC Layer - No Weight Sharing).
 - Multiple output units relies on same set of parameters (Conv Layer - Weight Sharing).
 
-## What are conceptual idioms to describe there is no weight sharing in FC layers ?
+### What are conceptual idioms to describe there is no weight sharing in FC layers ?
 
 - Each neuron to generate an output unit has its own weight vectors.
 - Each element in weight matrix is used/visited only once to compute layer output. 
 
-## Why is weight sharing so important ?
+### Why is weight sharing so important ?
 
 Weight sharing enables us to reduce the number of trainable parameters in the neural architecture. This allows us to use more number of layers in order to learn more complicated relationships in the data, and the model even dont get larger enough.
 
@@ -48,6 +48,12 @@ Weight sharing enables us to reduce the number of trainable parameters in the ne
 - ReLU activation
 - Residual Connections
 - Layer-wise Pretraining
+
+### What are two main contributions of residual connections in deep neural architectures ?
+
+- As the number of layers increases, optimization landscape becomes more complicated. This introduces so many local minima and saddle points. Residual connections smooths the loss topology, provides more stable landspace. In that way, non-convex structure of loss surface is alleviated.
+
+- Residual connections provide highways for the gradients. During backpropagation, derivative terms are not only included in severe multiplicative chain of weights, but also maintained as separate units. This counteracts vanishing gradients problem. 
 
 ### What is SentencePiece ?
 
