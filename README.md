@@ -54,7 +54,9 @@ Weight sharing enables us to reduce the number of trainable parameters in the ne
 
 - As the number of layers increases, optimization landscape becomes more complicated. This introduces so many local minima and saddle points. Residual connections smooths the loss topology, provides more stable landspace. In that way, non-convex structure of loss surface is alleviated.
 
-- Residual connections provide highways for the gradients. During backpropagation, derivative terms are not only included in severe multiplicative chain of weights, but also maintained as separate units. This counteracts vanishing gradients problem. 
+- Residual connections provide highways for the gradients, which helps the gradient travel through many layers without being significantly diminished. In mathematical perspective, derivative terms are not only included in severe multiplicative chain of weights, but also maintained as separate units. This counteracts vanishing gradients problem.  
+
+    Let's assume that $y = F(x) + x$ refers to a residual block. If we compute its derivative, $\frac{dy}{dx} = \frac{dF(x)}{dx} + 1$, occurs. Even if $\frac{dF(x)}{dx}$ is small, the overall gradient is increased by the additive $+1$ term, which also helps to preserve the gradient of the following layer as an identity multiplicative factor. 
 
 ### What is SentencePiece ?
 
