@@ -48,6 +48,7 @@ Weight sharing enables us to reduce the number of trainable parameters in the ne
 - ReLU activation
 - Residual Connections
 - Layer-wise Pretraining
+- Batch Normalization
 
 ### What are two main contributions of residual connections in deep neural architectures ?
 
