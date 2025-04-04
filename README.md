@@ -1,5 +1,5 @@
 
-### How are tokenization and input embeddings proceeded in BERT ?
+## How are tokenization and input embeddings proceeded in BERT ?
 
 Input sequence given to the BERT can be single sentence or a pair of sentences. This provides a methodology to deal with question answering tasks, where SEP token is added between QA sentences. 
 
@@ -8,7 +8,7 @@ Additionally, each token is diversified with respect to sentence ownership. It s
 In BERT, WordPiece style tokenizer is used, and it has 30k token vocabulary. The first token of each input sequence is always classification token [CLS] to represent the entire sequence for classification tasks. 
 
 
-### Can you describe the concept of connectivity in convolutional and FC layers ?
+## Can you describe the concept of connectivity in convolutional and FC layers ?
 
 In fully-connected layers, every output unit interacts with every input unit. In other words, all input units are consumed and processed to generate each output unit. This is described by matrix multiplication between input and weight matrices. 
 
@@ -18,7 +18,17 @@ On the other hand, convolution layers have sparse connectivity, which is also ca
 
 - The generation of output units requires fewer number of calculations. (Lower Computational Complexity)
 
-### Do we have weight-sharing in FC and convolution layers ?
+## What are the differences between RNNs and Transformer ?
+
+* *Core Mechanism:* Recurrent neural networks process the inputs sequentially, dealing with one word or subword at a time. In each time step, they update internal hidden state based on the piece of input that they have just processed. Transformers, on the other hand, consume the input sequence as a whole rather than word by word and process it in parallel. While doing that, they do not rely on recurrence or sequentially updated hidden state, instead leverage attention mechanism. 
+
+* *Parallelization and Training:* The recurrent nature of RNNs makes them computationally expensive: Each step in the sequence require processing the information from previous steps. This makes the steps are connected to each other; each one needs the result of previous one. That is why, its training cannot be parallelizable, which becomes more critical at longer sequences. In transformer layers, the computations for each position are independent from other ones, which facilliates simultaneous computions for all positions. That is why, it is parallelizable.
+
+* *Long-Range Depedencies:* Recurrent neural networks struggle with long sequences. Information flow from early steps has to pass through many intermediate steps, potentially getting diluted or lost as a vanishing gradient problem. The path length for information flow grows linearly. In contrast, transformers are quite successful at capturing long-range dependencies. Self-attention mechanism allows any two tokens in the sequence to interact with directly, so maximum path length for information flow is constant as $O(1)$. 
+
+* *Sequential Order:* The order of tokens is inherently preserved in RNNs, since its architecture scheme is organized in that way. Each time step relies on the output of previous one. Nevertheless, transformers do not have a built-in sense of order, so positional encoding is specifically added to input embeddings to provide information about the position of each token. 
+
+## Do we have weight-sharing in FC and convolution layers ?
 
 Weight sharing is a concept of using same parameters to generate more than one output unit. 
 
@@ -27,22 +37,22 @@ In a fully-connected layer, each neuron has its own weights. In that case, a dif
 - Each output unit relies on different set of parameters (FC Layer - No Weight Sharing).
 - Multiple output units relies on same set of parameters (Conv Layer - Weight Sharing).
 
-### What are conceptual idioms to describe there is no weight sharing in FC layers ?
+## What are conceptual idioms to describe there is no weight sharing in FC layers ?
 
 - Each neuron to generate an output unit has its own weight vectors.
 - Each element in weight matrix is used/visited only once to compute layer output. 
 
-### Why is weight sharing so important ?
+## Why is weight sharing so important ?
 
 Weight sharing enables us to reduce the number of trainable parameters in the neural architecture. This allows us to use more number of layers in order to learn more complicated relationships in the data, and the model even dont get larger enough.
 
-### Which factors decrease the number of parameters in CNNs ?
+## Which factors decrease the number of parameters in CNNs ?
 
 - Sparse connectivity, ssing smaller kernels than input map. Even though input gets larger, kernel size can remain same (This is not the case for FC layers).
 
 - Weight sharing enables us to use same kernel values to generate multiple output units. So, each output unit does not rely on a new set of parameters.
 
-### What are the possible solutions for vanishing gradients ?
+## What are the possible solutions for vanishing gradients ?
 
 - He/Glorot Initialization
 - ReLU activation
@@ -50,7 +60,7 @@ Weight sharing enables us to reduce the number of trainable parameters in the ne
 - Layer-wise Pretraining
 - Batch Normalization
 
-### What are two main contributions of residual connections in deep neural architectures ?
+## What are two main contributions of residual connections in deep neural architectures ?
 
 - As the number of layers increases, optimization landscape becomes more complicated. This introduces so many local minima and saddle points. Residual connections smooths the loss topology, provides more stable landspace. In that way, non-convex structure of loss surface is alleviated.
 
@@ -58,7 +68,7 @@ Weight sharing enables us to reduce the number of trainable parameters in the ne
 
     Let's assume that $y = F(x) + x$ refers to a residual block. If we compute its derivative, $\frac{dy}{dx} = \frac{dF(x)}{dx} + 1$ occurs. Even if $\frac{dF(x)}{dx}$ is small, the overall gradient is increased by the additive $+1$ term, which also helps to preserve the gradient of the following layer as an identity multiplicative factor. 
 
-### What is SentencePiece ?
+## What is SentencePiece ?
 
 SentencePiece is a language-independent subword tokenizer. It preserves the most repetitive words, but it splits the rare ones into the spepcific sub-parts that would appear more frequently in text corpus.   
 
@@ -71,7 +81,7 @@ SentencePiece features two subword segmentation algorithms, which are byte-pair 
 - [SentencePiece Paper](https://arxiv.org/pdf/1808.06226)
 - [Hugging Face](https://huggingface.co/docs/transformers/en/tokenizer_summary#sentencepiece)
 
-### What is Byte-Pair Encoding ?
+## What is Byte-Pair Encoding ?
 
 Byte-pair encoding (BPE) is a subword tokenization strategy used in pre-training GPT, GPT-2 and some BERT variations. It is also called as a compression algorithm used for word segmentation. It extracts unique set of words in the corpus and initialize the vocabulary by taking all unique symbols used to write those words. After getting base vocabulary, BPE started to search for the most frequent pair of existing tokens. Those two tokens are merged and added to vocabulary as a new token. This process is repeated until the desired vocabulary size is obtained by merges. 
 
@@ -88,7 +98,7 @@ For example, in DNABERT-2, DNA sequences are not in the form of linguistic sente
 - [DNABERT-2](https://arxiv.org/pdf/2306.15006)
 
 
-### What are the main differences between RNNs and Transformers ?
+## What are the main differences between RNNs and Transformers ?
 
 * In transformer, sentences are processed as a whole rather than word by word. On the other hand,  recurrent architectures process the inputs sequentially, one time step at a time.
 
@@ -101,7 +111,7 @@ For example, in DNABERT-2, DNA sequences are not in the form of linguistic sente
     * Transformers do not have such a design issue; it is capable of parallel processing. In inference stage, masking future tokens in self-attention leads transformer decoders to generate tokens one at a time. Nevertheless, in training stage, it processes entire entire sequence in parallel by teacher forcing.  
 
 
-### What are the three main limitations that impact mRNA analysis in deep learning ?
+## List three main limitations impacting mRNA analysis in deep learning ?
 
 - Many models utilize context windows that are too short to effectively process mRNA sequences. On the other hand, mRNAs are often extremely long. This makes it more difficult to model long-range dependencies.
 
@@ -109,25 +119,25 @@ For example, in DNABERT-2, DNA sequences are not in the form of linguistic sente
 
 - Existing models designed for mRNA analysis do not account for all mRNA sequence, instead they focus on only specific mRNA regions. This decreases their generalizability and make them less flexible.
 
-### Why is single nucleotide resolution used and entire mRNA sequence processed in Helix-mRNA model ?
+## Why is single nucleotide resolution used and entire mRNA sequence processed in Helix-mRNA model ?
 
 Complete biological information tries to be preserved without any data loss. In addition to this, high granuality is leveraged in sequence modeling.
 
 
-### What are the roles of mamba and attention layers in Helix-mRNA model ?
+## What are the roles of mamba and attention layers in Helix-mRNA model ?
 
 Mamba layers enable us to process long sequences in linear time complexity. At that point, they encode and summarize the context of the sequence. 
 
 Attention layers help to focus on sub regions of the sequence. They provide in-context retention property. In that way, codin region structure is preserved. To additionally support codon separation, a new token is introduced. 
 
 
-### What is the main advantage of mamba over attention systems in transformer ?
+## What is the main advantage of mamba over attention systems in transformer ?
 
 - Mamba is a state-space model. It maintains a hidden state, called as memory, and update this compressed state as processing the sequence given as input. It is specifically designed for processing long sequences because it has linear computational complexity.
 
 - On the other hand, attention systems compute the importance of each token relative to all other tokens, which causes approximately $O(n^2)$ computational complexity, where $n$ refers to the sequence length. This makes attention systems computationally expensive for long sequences. The investigation of mRNA molecules is one of the extreme cases where we observe this.
 
-### What is the relationship between Protein-LLMs and Protein Families ?
+## What is the relationship between Protein-LLMs and Protein Families ?
 
 Each protein family contains many different proteins, that share some conserved domains. For example, CDK1 and PLK2 comprise ***kinase domain***, located in 4-287 and 82-334 nucleotide ranges. This domain for its carrier proteins are not completely same, it actually differentiates. However, some common nucleotide motifs are located in that domain, which provides similar functionalities for those proteins. In that case, they can be involved in related biochemical tasks. This suggests that the proteins in the same family might possibly have common evolutionary origin. To detect this, sequence alignment methods and hidden Markov models are used. Protein language models started to be used to detect these motifs and domains for family classification tasks. 
 
@@ -135,7 +145,7 @@ Each protein family contains many different proteins, that share some conserved 
 - [EMBL-Protein Classification](https://www.ebi.ac.uk/training/online/courses/protein-classification-intro-ebi-resources/protein-classification/what-are-protein-families/#:~:text=A%20protein%20family%20is%20a,smaller%2C%20more%20closely%20related%20groups.)
 
 
-### What is a protein domain ?
+## What is a protein domain ?
 
 A protein can consists of single domain or multiple domains. Each domain is a distinct and independently folding unit. In other words, how a domain will be folded does not depend on other domains; that is why, the domains are generally called as a self-stabilizing unit. 
 
