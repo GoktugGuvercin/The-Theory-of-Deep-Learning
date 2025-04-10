@@ -60,6 +60,14 @@ Weight sharing enables us to reduce the number of trainable parameters in the ne
 - Layer-wise Pretraining
 - Batch Normalization
 
+## What is confusion matrix ?
+
+- Classification models classify the samples into predefined categories. To evaluate how well these classifiers perform, we use confusion matrix. It is actually tabular way of visualizing and assessing model performance. 
+
+- It shows how many times the model predicted each class compared to ground truth labels. While the rows represent the predictions, the columns refer to ground-truth labels. Each row and column are defined to denote a specific class index. 
+
+- At first, all entries of this matrix are set to zero. Then, each prediction is compared with its true label, and their corresponding entry is incremented by one. 
+
 ## What are two main contributions of residual connections in deep neural architectures ?
 
 - As the number of layers increases, optimization landscape becomes more complicated. This introduces so many local minima and saddle points. Residual connections smooths the loss topology, provides more stable landspace. In that way, non-convex structure of loss surface is alleviated.
