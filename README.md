@@ -66,7 +66,7 @@ Weight sharing enables us to reduce the number of trainable parameters in the ne
 
 - It shows how many times the model predicted each class compared to ground truth labels. While the rows represent the predictions, the columns refer to ground-truth labels. Each row and column are defined to denote a specific class index. 
 
-- At first, all entries of this matrix are set to zero. Then, each prediction is compared with its true label, and their corresponding entry is incremented by one. 
+- At first, all entries of this matrix are set to zero. Then, each prediction is compared with its true label, and their corresponding entry is incremented by one. Confusion matrix entries are used to calculate counting metrics like TP, FP, FN, and TN. 
 
 ## What are two main contributions of residual connections in deep neural architectures ?
 
