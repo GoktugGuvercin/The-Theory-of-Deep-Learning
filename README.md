@@ -68,6 +68,10 @@ Weight sharing enables us to reduce the number of trainable parameters in the ne
 
 - *Processing Confusion Matrix:* At first, all entries of this matrix are set to zero. Then, each prediction is compared with its true label, and their corresponding entry is incremented by one. Confusion matrix entries are used to calculate counting metrics like TP, FP, FN, and TN. 
 
+## What is the main difference between semantic segmentation and instance segmentation ?
+
+In semantic segmentation, all objects of same class are treated identically in semantic map. On the other hand, instance segmentation tries to differentiate and separate between unique instances of same object type.
+
 ## What are two main contributions of residual connections in deep neural architectures ?
 
 - As the number of layers increases, optimization landscape becomes more complicated. This introduces so many local minima and saddle points. Residual connections smooths the loss topology, provides more stable landspace. In that way, non-convex structure of loss surface is alleviated.
