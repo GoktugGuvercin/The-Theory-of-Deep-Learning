@@ -7,6 +7,12 @@ Additionally, each token is diversified with respect to sentence ownership. It s
 
 In BERT, WordPiece style tokenizer is used, and it has 30k token vocabulary. The first token of each input sequence is always classification token [CLS] to represent the entire sequence for classification tasks. 
 
+## Can you describe classical pipeline of Retrieval Augmented Generation ?
+
+When a query is given as input to a generative large language model, its context is enriched by retrieving relevant, up-to-date information from external resources. In that way, additional guidance would be provided beyond what the model have learnt during training. To achieve that, the contenxt of the query is encoded by a representation model and its corresponding embedding is searched on vector databases. At this point, the most similar embeddings along with relavant documents or text chunks are retrieved.
+
+Vector databases are built at the top of approximate nearest neighbor search to return the results as fast as possible. While this provides and advantage in speed, the retrieved results are not perfectly precise, where reranking enter the picture. Reranker models, at first, encode the query and retrieved passages and then compute pairwise proximity score between them. At the end, the most relevant top K passages are chosen to be included with query in an extended prompt. 
+
 
 ## Can you describe the concept of connectivity in convolutional and FC layers ?
 
