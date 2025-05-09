@@ -25,7 +25,7 @@ Vector databases are built at the top of approximate nearest neighbor search to 
 
 5. *Semantic Coherence:* Some text splitters divide the given text as input into sentences, group them into small parapraphs and then combine them into larger passages depending on their semantic meaning. Such an approach helps us to construct semantically coherent chunks, which amplifies the efficiency of semantic search on vector databases.
 
-References: [1](https://cohere.com/blog/chunking-for-rag-maximize-enterprise-knowledge-retrieval) [2](https://python.langchain.com/docs/concepts/text_splitters/#:~:text=Optimizing%20computational%20resources%3A%20Working%20with,better%20parallelization%20of%20processing%20tasks.)
+References: [1](https://cohere.com/blog/chunking-for-rag-maximize-enterprise-knowledge-retrieval) - [2](https://python.langchain.com/docs/concepts/text_splitters/#:~:text=Optimizing%20computational%20resources%3A%20Working%20with,better%20parallelization%20of%20processing%20tasks.)
 
 ## Can you describe the concept of connectivity in convolutional and FC layers ?
 
