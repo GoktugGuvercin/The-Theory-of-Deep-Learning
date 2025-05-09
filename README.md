@@ -13,6 +13,20 @@ When a query is given as input to a generative large language model, its context
 
 Vector databases are built at the top of approximate nearest neighbor search to return the results as fast as possible. While this provides and advantage in speed, the retrieved results are not perfectly precise, where reranking enter the picture. Reranker models, at first, encode the query and retrieved passages and then compute pairwise proximity score between them. At the end, the most relevant top K passages are chosen to be included with query in an extended prompt. 
 
+## Why do we split the documents into smaller chunks for vector databases ?
+
+1. *Focused Semantic Search:* Large passages become more comprehensive, and thereby including more than one topic or headline. In contrast, smaller chunks allow for more focused and only one context for specific topic. This simplifies the search and help to find the most relevant, specific pieces of information that our query needs.
+
+2. *Representation Quality:* Large text chunks tend to comprise multiple topics; in that case, its semantic representation extracted by embedding models might be too broad and thereby reducing the similarity to a specific query. In other words, the quality of embeddings degrade because they would try to encapsulate to much information. Spliting creates more distinct and semantically focused chunks; this improves the representation power of their embeddings and thereby making them easily matchable with our query content. This contributes to more accurate retrieval. 
+
+3. *Constraint on Context Window:* Both embedding models and generative LLMs have a finite context window, meaning they can only process a limited amount of text at a time. Splitting documents into smaller chunks ensures that the retrieved information fits within this window.
+
+4. *Resource Management:* Smaller chunks are always more advantageous in memory efficiency. This is directly related to memory footprint of our generative and embedding language models. Self-attention mechanism in transformer models require memory consumption that scale quadratically with sequence length. In that case, working with smaller chunks becomes a more pleased situation. Additionally, smaller, but many number of chunks are more suitable for parallelization. You can dispatch each chunk to one worker, and they all run concurrently. Since large chunks consume more memory, we might only be able to fit very few ones into GPU at a time, utilizing large batch size may not be possible.  
+
+5. *Semantic Coherence:* Some text splitters divide the given text as input into sentences, group them into small parapraphs and then combine them into larger passages depending on their semantic meaning. Such an approach helps us to construct semantically coherent chunks, which amplifies the efficiency of semantic search on vector databases.
+
+References: [1](https://cohere.com/blog/chunking-for-rag-maximize-enterprise-knowledge-retrieval) [2](https://python.langchain.com/docs/concepts/text_splitters/#:~:text=Optimizing%20computational%20resources%3A%20Working%20with,better%20parallelization%20of%20processing%20tasks.)
+
 ## Can you describe the concept of connectivity in convolutional and FC layers ?
 
 In fully-connected layers, every output unit interacts with every input unit. In other words, all input units are consumed and processed to generate each output unit. This is described by matrix multiplication between input and weight matrices. 
